@@ -44,7 +44,7 @@ public class BuyerServiceImpl implements BuyerService {
 	public Buyer register(@NotNull BuyerDTO buyerDto) throws BuyerNotCreatedException {
 		LOG.info("validating buyer info");
 		try {
-			if (buyerDto.getFirstName().length() <= 5 && buyerDto.getFirstName().length() >= 30)
+			/*if (buyerDto.getFirstName().length() <= 5 && buyerDto.getFirstName().length() >= 30)
 				throw new BuyerNotCreatedException("buyer first name validation failure");
 			else if (buyerDto.getLastName().length() <= 5 && buyerDto.getLastName().length() >= 25)
 				throw new BuyerNotCreatedException("buyer last name validation failure");
@@ -52,12 +52,12 @@ public class BuyerServiceImpl implements BuyerService {
 				throw new BuyerNotCreatedException("buyer phone number validation failure");
 			else if (null == buyerDto.getEmail()
 					|| !Pattern.compile("^(.+)@(.+)$").matcher(buyerDto.getEmail()).matches())
-				throw new BuyerNotCreatedException("buyer email validation failure");
+				throw new BuyerNotCreatedException("buyer email validation failure");*/
 			LOG.info("saving buyer details");
 			Buyer buyer = Buyer.builder().firstName(buyerDto.getFirstName()).lastName(buyerDto.getLastName())
 					.address(buyerDto.getAddress()).city(buyerDto.getCity()).state(buyerDto.getState())
 					.pin(buyerDto.getPin()).phone(buyerDto.getPhone()).email(buyerDto.getEmail())
-					.bidAmount(buyerDto.getBidAmount()).build();
+					.build();
 			return this.buyerRepository.save(buyer);
 		} catch (Exception e) {
 			LOG.error(e.getMessage() + " -- " + e.getClass().getName());

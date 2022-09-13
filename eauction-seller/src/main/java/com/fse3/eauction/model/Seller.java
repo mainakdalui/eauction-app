@@ -2,7 +2,10 @@ package com.fse3.eauction.model;
 
 import java.io.Serializable;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
@@ -25,13 +28,11 @@ public class Seller implements Serializable {
 	private String sellerId;
 	
 	@NotNull
-	@Size(min = 5, message = "{validation.seller.fname.short}")
-	@Size(max = 30, message = "{validation.seller.lname.long}")
+	@Size(min = 5, max = 30, message = "{validation.seller.fname.length}")
 	private String firstName;
 	
 	@NotNull
-	@Size(min = 5, message = "{validation.name.short}")
-	@Size(max = 25, message = "{validation.name.long}")
+	@Size(min = 3, max = 25, message = "{validation.seller.lname.length}")
 	private String lastName;
 	
 	private String address;
@@ -40,7 +41,7 @@ public class Seller implements Serializable {
 	private String pin;
 	
 	@NotNull
-	@Size(min = 10, max = 10, message = "{validation.phone.length")
+	@Pattern(regexp="(^$|[0-9]{10})" , message = "{validation.seller.phone.length}")
 	private String phone;
 	
 	@NotNull

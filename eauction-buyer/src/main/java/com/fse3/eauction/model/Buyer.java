@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
@@ -27,13 +28,11 @@ public class Buyer implements Serializable {
 	private String buyerId;
 	
 	@NotNull
-	@Size(min = 5, message = "{validation.name.short}")
-	@Size(max = 30, message = "{validation.name.long}")
+	@Size(min = 5, max = 30, message = "{validation.buyer.fname.length}")
 	private String firstName;
 	
 	@NotNull
-	@Size(min = 5, message = "{validation.name.short}")
-	@Size(max = 25, message = "{validation.name.long}")
+	@Size(min = 3, max = 25, message = "{validation.buyer.lname.length}")
 	private String lastName;
 	
 	private String address;
@@ -45,7 +44,7 @@ public class Buyer implements Serializable {
 	private String pin;
 	
 	@NotNull
-	@Size(min = 10, max = 10, message = "{validation.phone.length")
+	@Pattern(regexp="(^$|[0-9]{10})" , message = "{validation.buyer.phone.length}")
 	private String phone;
 	
 	@NotNull
@@ -53,6 +52,6 @@ public class Buyer implements Serializable {
 	@Indexed
 	private String email;
 	
-	private float bidAmount;
+	//private float bidAmount;
 	
 }

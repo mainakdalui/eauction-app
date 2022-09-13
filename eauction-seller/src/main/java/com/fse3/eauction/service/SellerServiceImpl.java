@@ -48,7 +48,7 @@ public class SellerServiceImpl implements SellerService {
 	public Seller register(SellerDTO sellerDto) throws SellerNotCreatedException {
 		log.info("validating seller info");
 		try {
-			if (sellerDto.getFirstName().length() <= 5 && sellerDto.getFirstName().length() >= 30)
+			/*if (sellerDto.getFirstName().length() <= 5 && sellerDto.getFirstName().length() >= 30)
 				throw new SellerNotCreatedException("seller first name validation failure");
 			else if (sellerDto.getLastName().length() <= 5 && sellerDto.getLastName().length() >= 25)
 				throw new SellerNotCreatedException("seller last name validation failure");
@@ -56,7 +56,7 @@ public class SellerServiceImpl implements SellerService {
 				throw new SellerNotCreatedException("seller phone number validation failure");
 			else if (null == sellerDto.getEmail()
 					|| !Pattern.compile("^(.+)@(.+)$").matcher(sellerDto.getEmail()).matches())
-				throw new SellerNotCreatedException("seller email validation failure");
+				throw new SellerNotCreatedException("seller email validation failure");*/
 			log.info("saving seller details");
 			Seller seller = Seller.builder().firstName(sellerDto.getFirstName()).lastName(sellerDto.getLastName())
 					.address(sellerDto.getAddress()).city(sellerDto.getCity()).state(sellerDto.getState())
@@ -151,7 +151,7 @@ public class SellerServiceImpl implements SellerService {
 		Optional<List<Bid>> existingBidList = Optional.ofNullable(this.bidRepository.findAllByProductId(productId));
 		if ((new Date()).after(existingProduct.get().getBidEndDate()))
 			throw new ProductNotDeletedException("unable to delete product after bid end date");
-		else if (existingBidList.isPresent() && existingBidList.get().isEmpty())
+		else if (existingBidList.isPresent() && !existingBidList.get().isEmpty())
 			throw new ProductNotDeletedException("unable to delete product having a bid placed");
 		else
 			this.productRepository.deleteById(productId);

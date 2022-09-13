@@ -19,6 +19,6 @@ public class BuyerDTO {
 	private String pin;
 	private String phone;
 	private String email;
-	private float bidAmount;
+	//private float bidAmount;
 	
 }
