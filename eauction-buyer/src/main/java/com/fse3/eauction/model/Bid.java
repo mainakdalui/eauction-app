@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,12 +28,14 @@ public class Bid implements Serializable {
 	private String buyerId;
 	
 	@NotNull
+	@Indexed
 	private String buyerEmailId;
 	
 	@NotNull
 	private float bidAmount;
 	
 	@NotNull
+	@Indexed
 	private String productId;
 	
 }

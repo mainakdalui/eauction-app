@@ -103,7 +103,7 @@ public class BuyerServiceImpl implements BuyerService {
 	@Override
 	public Bid placeBid(BidDTO bidDto) throws BuyerNotFoundException, BidNotPlacedException {
 		Optional<Buyer> existingBuyer = Optional.ofNullable(this.buyerRepository.findByEmail(bidDto.getBuyerEmailId()));
-		Optional<Product> existingProduct = Optional.ofNullable(this.productRepository.findByProductId(bidDto.getProductId()));
+		Optional<Product> existingProduct = this.productRepository.findById(bidDto.getProductId());
 		if (!existingProduct.isPresent())
 			throw new BidNotPlacedException("product not found");
 		else if (!existingBuyer.isPresent())
@@ -128,7 +128,7 @@ public class BuyerServiceImpl implements BuyerService {
 				.ofNullable(this.bidRepository.findByProductIdAndBuyerEmailId(productId, buyerEmailId));
 		if (!existingBid.isPresent())
 			throw new BidNotPlacedException("bid not found for the product");
-		Optional<Product> existingProduct = Optional.ofNullable(this.productRepository.findByProductId(productId));
+		Optional<Product> existingProduct = this.productRepository.findById(productId);
 		if (!existingProduct.isPresent())
 			throw new BidNotPlacedException("invalid product id");
 		if ((new Date()).after(existingProduct.get().getBidEndDate()))

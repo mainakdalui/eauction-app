@@ -1,5 +1,7 @@
 package com.fse3.eauction.model;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
@@ -13,8 +15,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 @RedisHash("Bid")
-public class Bid {
-	
+public class Bid implements Serializable {
+
+	private static final long serialVersionUID = 4465590632589185461L;
+
 	@Id
 	private String bidId;
 	
