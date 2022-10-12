@@ -1,5 +1,6 @@
 package com.fse3.eauction.dto;
 
+import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,8 +12,15 @@ import lombok.NoArgsConstructor;
 @Data
 public class BidDTO {
 	
+	@Size(min = 1)
+	private String buyerId;
+	
+	@Size(min = 1)
 	private String buyerEmailId;
-	private String productId;
+	
 	private float bidAmount;
+	
+	@Size(min = 1)
+	private String productId;
 	
 }

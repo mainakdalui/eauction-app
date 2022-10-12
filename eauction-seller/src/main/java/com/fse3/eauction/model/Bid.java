@@ -1,8 +1,8 @@
 package com.fse3.eauction.model;
 
 import java.io.Serializable;
-
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 import lombok.AllArgsConstructor;
@@ -22,19 +22,19 @@ public class Bid implements Serializable {
 	@Id
 	private String bidId;
 	
-	@NotNull
+	@Size(min = 1)
 	private String sellerId;
 	
-	@NotNull
+	@Size(min = 1)
 	private String buyerId;
 	
 	@NotNull
 	private String productId;
 	
-	@NotNull
+	@Size(min = 1)
 	private float bidAmount;
 	
-	@NotNull
+	@Size(min = 1)
 	private boolean active;
 	
 }

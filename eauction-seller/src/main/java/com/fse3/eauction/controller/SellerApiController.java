@@ -3,6 +3,8 @@ package com.fse3.eauction.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -55,7 +57,7 @@ public class SellerApiController {
 	
 	
 	@PostMapping("/register")
-	public ResponseEntity<Seller> registerSeller(@RequestBody SellerDTO sellerDto) {
+	public ResponseEntity<Seller> registerSeller(@Valid @RequestBody SellerDTO sellerDto) {
 		log.info("begin seller registration");
 		try {
 			Seller seller = this.sellerService.register(sellerDto);
@@ -133,7 +135,7 @@ public class SellerApiController {
 	
 
 	@PostMapping(value = "/add-product")
-	public ResponseEntity<Product> addProduct(@RequestBody ProductDTO productDto) {
+	public ResponseEntity<Product> addProduct(@Valid @RequestBody ProductDTO productDto) {
 		log.info("begin adding new product");
 		try {
 			Product product = this.sellerService.addProduct(productDto);
