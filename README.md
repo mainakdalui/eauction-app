@@ -26,3 +26,11 @@ https://dlcdn.apache.org/kafka/3.2.1/kafka_2.13-3.2.1.tgz
 ## Apache Kafka commands for topic eauction.bid
 .\bin\windows\kafka-topics.bat --describe --topic eauction.bid --bootstrap-server localhost:9092
 .\bin\windows\kafka-console-consumer.bat --topic eauction.bid --from-beginning --bootstrap-server localhost:9092
+
+## Docker image build
+docker build -t mainakdalui/buyer-svc-imgdock .
+docker build -t mainakdalui/seller-svc-imgdock .
+
+## Docker run
+docker run -p 8082:8082 --name buyer-svc-condock mainakdalui/buyer-svc-imgdock
+docker run -p 8081:8081 --name seller-svc-condock mainakdalui/seller-svc-imgdock
