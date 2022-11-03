@@ -118,7 +118,7 @@ public class SellerApiController {
 				deleted = this.sellerService.deleteSeller("");
 			} else {
 				Optional<Seller> buyer = this.sellerService.getSellerById(sellerId);
-				if (buyer.isEmpty())
+				if (!buyer.isPresent())
 					throw new SellerNotFoundException("seller not found");
 				deleted = this.sellerService.deleteSeller(sellerId);
 			}

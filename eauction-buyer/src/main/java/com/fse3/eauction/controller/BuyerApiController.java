@@ -119,7 +119,7 @@ public class BuyerApiController {
 				deleted = this.buyerService.deleteBuyer("");
 			} else {
 				Optional<Buyer> buyer = this.buyerService.getBuyerById(buyerId);
-				if (buyer.isEmpty())
+				if (!buyer.isPresent())
 					throw new BuyerNotFoundException("buyer not found");
 				deleted = this.buyerService.deleteBuyer(buyerId);
 			}
