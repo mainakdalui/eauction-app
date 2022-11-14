@@ -30,7 +30,6 @@ services:
       
   buyer_svc:
     image: 'mainakdalui/buyer-svc-imgdock:v1'
-    build: ./eauction-buyer/
     container_name: buyer-svc-condock
     restart: always
     ports:
@@ -42,7 +41,6 @@ services:
       
   seller_svc:
     image: 'mainakdalui/seller-svc-imgdock:v1'
-    build: ./eauction-seller/
     container_name: seller-svc-condock
     restart: always
     ports:
